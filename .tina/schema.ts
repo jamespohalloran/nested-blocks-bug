@@ -1,31 +1,34 @@
 import { defineConfig, defineSchema, TinaTemplate } from "tinacms";
 
-const InnerTemplate: TinaTemplate = {
-  label: "List Items",
-  name: "items",
-  ui: {
-    defaultItem: {
-      title: "Here's Another Feature",
-    },
-  },
-  fields: [
-    {
-      label: "Page Blocks",
-      name: "nestedBlockc",
-      type: "object",
-      list: true,
-      ui: {
-        visualSelector: true,
+const CreateInnerTemplate = () => {
+  const InnerTemplate: TinaTemplate = {
+    label: "List Items",
+    name: "items",
+    ui: {
+      defaultItem: {
+        title: "Here's Another Feature",
       },
-      fields: [
-        {
-          label: "title",
-          name: "title",
-          type: "string",
-        },
-      ],
     },
-  ],
+    fields: [
+      {
+        label: "Page Blocks",
+        name: "nestedBlockc",
+        type: "object",
+        list: true,
+        ui: {
+          visualSelector: true,
+        },
+        fields: [
+          {
+            label: "title",
+            name: "title",
+            type: "string",
+          },
+        ],
+      },
+    ],
+  };
+  return InnerTemplate;
 };
 
 const BlocksTemplate: TinaTemplate = {
@@ -37,14 +40,14 @@ const BlocksTemplate: TinaTemplate = {
       name: "nestedBlock1",
       type: "object",
       list: true,
-      templates: [InnerTemplate],
+      templates: [CreateInnerTemplate()],
     },
     {
       label: "Page Blocks2",
       name: "nestedBlock2",
       type: "object",
       list: true,
-      templates: [InnerTemplate],
+      templates: [CreateInnerTemplate()],
     },
   ],
 };
