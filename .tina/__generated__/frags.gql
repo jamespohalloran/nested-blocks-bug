@@ -1,8 +1,16 @@
 fragment PageParts on Page {
-  body
-}
-
-fragment PostParts on Post {
-  title
-  body
+  pageBlocks3 {
+    __typename
+    ... on PagePageBlocks3NestedBlocka {
+      nestedBlockb {
+        __typename
+        ... on PagePageBlocks3NestedBlockaNestedBlockbItems {
+          nestedBlockc {
+            __typename
+            title
+          }
+        }
+      }
+    }
+  }
 }

@@ -50,8 +50,6 @@ type Query {
   document(collection: String, relativePath: String): DocumentNode!
   page(relativePath: String): Page!
   pageConnection(before: String, after: String, first: Float, last: Float, sort: String): PageConnection!
-  post(relativePath: String): Post!
-  postConnection(before: String, after: String, first: Float, last: Float, sort: String): PostConnection!
 }
 
 type DocumentConnectionEdges {
@@ -77,10 +75,26 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String): DocumentConnection!
 }
 
-union DocumentNode = Page | Post
+union DocumentNode = Page
+
+type PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc {
+  title: String
+}
+
+type PagePageBlocks3NestedBlockaNestedBlockbItems {
+  nestedBlockc: [PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc]
+}
+
+union PagePageBlocks3NestedBlockaNestedBlockb = PagePageBlocks3NestedBlockaNestedBlockbItems
+
+type PagePageBlocks3NestedBlocka {
+  nestedBlockb: [PagePageBlocks3NestedBlockaNestedBlockb]
+}
+
+union PagePageBlocks3 = PagePageBlocks3NestedBlocka
 
 type Page implements Node & Document {
-  body: JSON
+  pageBlocks3: [PagePageBlocks3]
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -97,25 +111,6 @@ type PageConnection implements Connection {
   edges: [PageConnectionEdges]
 }
 
-type Post implements Node & Document {
-  title: String
-  body: String
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-type PostConnectionEdges {
-  cursor: String!
-  node: Post
-}
-
-type PostConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [PostConnectionEdges]
-}
-
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
@@ -123,22 +118,34 @@ type Mutation {
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   updatePage(relativePath: String!, params: PageMutation!): Page!
   createPage(relativePath: String!, params: PageMutation!): Page!
-  updatePost(relativePath: String!, params: PostMutation!): Post!
-  createPost(relativePath: String!, params: PostMutation!): Post!
 }
 
 input DocumentMutation {
   page: PageMutation
-  post: PostMutation
+}
+
+input PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockcMutation {
+  title: String
+}
+
+input PagePageBlocks3NestedBlockaNestedBlockbItemsMutation {
+  nestedBlockc: [PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockcMutation]
+}
+
+input PagePageBlocks3NestedBlockaNestedBlockbMutation {
+  items: PagePageBlocks3NestedBlockaNestedBlockbItemsMutation
+}
+
+input PagePageBlocks3NestedBlockaMutation {
+  nestedBlockb: [PagePageBlocks3NestedBlockaNestedBlockbMutation]
+}
+
+input PagePageBlocks3Mutation {
+  nestedBlocka: PagePageBlocks3NestedBlockaMutation
 }
 
 input PageMutation {
-  body: JSON
-}
-
-input PostMutation {
-  title: String
-  body: String
+  pageBlocks3: [PagePageBlocks3Mutation]
 }
 
 schema {

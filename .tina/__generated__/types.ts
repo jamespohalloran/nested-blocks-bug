@@ -75,8 +75,6 @@ export type Query = {
   document: DocumentNode;
   page: Page;
   pageConnection: PageConnection;
-  post: Post;
-  postConnection: PostConnection;
 };
 
 
@@ -107,20 +105,6 @@ export type QueryPageArgs = {
 
 
 export type QueryPageConnectionArgs = {
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Float']>;
-  last?: InputMaybe<Scalars['Float']>;
-  sort?: InputMaybe<Scalars['String']>;
-};
-
-
-export type QueryPostArgs = {
-  relativePath?: InputMaybe<Scalars['String']>;
-};
-
-
-export type QueryPostConnectionArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
@@ -163,11 +147,30 @@ export type CollectionDocumentsArgs = {
   sort?: InputMaybe<Scalars['String']>;
 };
 
-export type DocumentNode = Page | Post;
+export type DocumentNode = Page;
+
+export type PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc = {
+  __typename?: 'PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc';
+  title?: Maybe<Scalars['String']>;
+};
+
+export type PagePageBlocks3NestedBlockaNestedBlockbItems = {
+  __typename?: 'PagePageBlocks3NestedBlockaNestedBlockbItems';
+  nestedBlockc?: Maybe<Array<Maybe<PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc>>>;
+};
+
+export type PagePageBlocks3NestedBlockaNestedBlockb = PagePageBlocks3NestedBlockaNestedBlockbItems;
+
+export type PagePageBlocks3NestedBlocka = {
+  __typename?: 'PagePageBlocks3NestedBlocka';
+  nestedBlockb?: Maybe<Array<Maybe<PagePageBlocks3NestedBlockaNestedBlockb>>>;
+};
+
+export type PagePageBlocks3 = PagePageBlocks3NestedBlocka;
 
 export type Page = Node & Document & {
   __typename?: 'Page';
-  body?: Maybe<Scalars['JSON']>;
+  pageBlocks3?: Maybe<Array<Maybe<PagePageBlocks3>>>;
   id: Scalars['ID'];
   _sys: SystemInfo;
   _values: Scalars['JSON'];
@@ -186,28 +189,6 @@ export type PageConnection = Connection & {
   edges?: Maybe<Array<Maybe<PageConnectionEdges>>>;
 };
 
-export type Post = Node & Document & {
-  __typename?: 'Post';
-  title?: Maybe<Scalars['String']>;
-  body?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON'];
-};
-
-export type PostConnectionEdges = {
-  __typename?: 'PostConnectionEdges';
-  cursor: Scalars['String'];
-  node?: Maybe<Post>;
-};
-
-export type PostConnection = Connection & {
-  __typename?: 'PostConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float'];
-  edges?: Maybe<Array<Maybe<PostConnectionEdges>>>;
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -216,8 +197,6 @@ export type Mutation = {
   createDocument: DocumentNode;
   updatePage: Page;
   createPage: Page;
-  updatePost: Post;
-  createPost: Post;
 };
 
 
@@ -259,42 +238,42 @@ export type MutationCreatePageArgs = {
   params: PageMutation;
 };
 
-
-export type MutationUpdatePostArgs = {
-  relativePath: Scalars['String'];
-  params: PostMutation;
-};
-
-
-export type MutationCreatePostArgs = {
-  relativePath: Scalars['String'];
-  params: PostMutation;
-};
-
 export type DocumentMutation = {
   page?: InputMaybe<PageMutation>;
-  post?: InputMaybe<PostMutation>;
+};
+
+export type PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockcMutation = {
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type PagePageBlocks3NestedBlockaNestedBlockbItemsMutation = {
+  nestedBlockc?: InputMaybe<Array<InputMaybe<PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockcMutation>>>;
+};
+
+export type PagePageBlocks3NestedBlockaNestedBlockbMutation = {
+  items?: InputMaybe<PagePageBlocks3NestedBlockaNestedBlockbItemsMutation>;
+};
+
+export type PagePageBlocks3NestedBlockaMutation = {
+  nestedBlockb?: InputMaybe<Array<InputMaybe<PagePageBlocks3NestedBlockaNestedBlockbMutation>>>;
+};
+
+export type PagePageBlocks3Mutation = {
+  nestedBlocka?: InputMaybe<PagePageBlocks3NestedBlockaMutation>;
 };
 
 export type PageMutation = {
-  body?: InputMaybe<Scalars['JSON']>;
+  pageBlocks3?: InputMaybe<Array<InputMaybe<PagePageBlocks3Mutation>>>;
 };
 
-export type PostMutation = {
-  title?: InputMaybe<Scalars['String']>;
-  body?: InputMaybe<Scalars['String']>;
-};
-
-export type PagePartsFragment = { __typename?: 'Page', body?: any | null | undefined };
-
-export type PostPartsFragment = { __typename?: 'Post', title?: string | null | undefined, body?: string | null | undefined };
+export type PagePartsFragment = { __typename?: 'Page', pageBlocks3?: Array<{ __typename: 'PagePageBlocks3NestedBlocka', nestedBlockb?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlockbItems', nestedBlockc?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc', title?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined };
 
 export type PageQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
 
 
-export type PageQuery = { __typename?: 'Query', page: { __typename?: 'Page', id: string, body?: any | null | undefined, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PageQuery = { __typename?: 'Query', page: { __typename?: 'Page', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, pageBlocks3?: Array<{ __typename: 'PagePageBlocks3NestedBlocka', nestedBlockb?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlockbItems', nestedBlockc?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc', title?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } };
 
 export type PageConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']>;
@@ -305,35 +284,24 @@ export type PageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PageConnectionQuery = { __typename?: 'Query', pageConnection: { __typename?: 'PageConnection', totalCount: number, edges?: Array<{ __typename?: 'PageConnectionEdges', node?: { __typename?: 'Page', id: string, body?: any | null | undefined, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null | undefined } | null | undefined> | null | undefined } };
-
-export type PostQueryVariables = Exact<{
-  relativePath: Scalars['String'];
-}>;
-
-
-export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, title?: string | null | undefined, body?: string | null | undefined, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type PostConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Float']>;
-  last?: InputMaybe<Scalars['Float']>;
-  sort?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'Post', id: string, title?: string | null | undefined, body?: string | null | undefined, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null | undefined } | null | undefined> | null | undefined } };
+export type PageConnectionQuery = { __typename?: 'Query', pageConnection: { __typename?: 'PageConnection', totalCount: number, edges?: Array<{ __typename?: 'PageConnectionEdges', node?: { __typename?: 'Page', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, pageBlocks3?: Array<{ __typename: 'PagePageBlocks3NestedBlocka', nestedBlockb?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlockbItems', nestedBlockc?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc', title?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } | null | undefined } | null | undefined> | null | undefined } };
 
 export const PagePartsFragmentDoc = gql`
     fragment PageParts on Page {
-  body
-}
-    `;
-export const PostPartsFragmentDoc = gql`
-    fragment PostParts on Post {
-  title
-  body
+  pageBlocks3 {
+    __typename
+    ... on PagePageBlocks3NestedBlocka {
+      nestedBlockb {
+        __typename
+        ... on PagePageBlocks3NestedBlockaNestedBlockbItems {
+          nestedBlockc {
+            __typename
+            title
+          }
+        }
+      }
+    }
+  }
 }
     `;
 export const PageDocument = gql`
@@ -383,53 +351,6 @@ export const PageConnectionDocument = gql`
   }
 }
     ${PagePartsFragmentDoc}`;
-export const PostDocument = gql`
-    query post($relativePath: String!) {
-  post(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...PostParts
-  }
-}
-    ${PostPartsFragmentDoc}`;
-export const PostConnectionDocument = gql`
-    query postConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
-  postConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-  ) {
-    totalCount
-    edges {
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...PostParts
-      }
-    }
-  }
-}
-    ${PostPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -438,12 +359,6 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     pageConnection(variables?: PageConnectionQueryVariables, options?: C): Promise<{data: PageConnectionQuery, variables: PageConnectionQueryVariables, query: string}> {
         return requester<{data: PageConnectionQuery, variables: PageConnectionQueryVariables, query: string}, PageConnectionQueryVariables>(PageConnectionDocument, variables, options);
-      },
-    post(variables: PostQueryVariables, options?: C): Promise<{data: PostQuery, variables: PostQueryVariables, query: string}> {
-        return requester<{data: PostQuery, variables: PostQueryVariables, query: string}, PostQueryVariables>(PostDocument, variables, options);
-      },
-    postConnection(variables?: PostConnectionQueryVariables, options?: C): Promise<{data: PostConnectionQuery, variables: PostConnectionQueryVariables, query: string}> {
-        return requester<{data: PostConnectionQuery, variables: PostConnectionQueryVariables, query: string}, PostConnectionQueryVariables>(PostConnectionDocument, variables, options);
       }
     };
   }

@@ -1,46 +1,33 @@
 import { staticRequest } from "tinacms";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Layout } from "../components/Layout";
 import { useTina } from "tinacms/dist/edit-state";
-
-const query = `{
-  page(relativePath: "home.mdx"){
-    body
-  }
-}`;
+import { ExperimentalGetTinaClient } from "../.tina/__generated__/types.ts";
 
 export default function Home(props) {
   // data passes though in production mode and data is updated to the sidebar data in edit-mode
   const { data } = useTina({
-    query,
-    variables: {},
+    query: props.query,
+    variables: props.variables,
     data: props.data,
   });
 
-  const content = data.page.body;
-  return (
-    <Layout>
-      <TinaMarkdown content={content} />
-    </Layout>
-  );
+  return <Layout>{JSON.stringify(data)}</Layout>;
 }
 
 export const getStaticProps = async () => {
   const variables = {};
   let data = {};
-  try {
-    data = await staticRequest({
-      query,
-      variables,
-    });
-  } catch {
-    // swallow errors related to document creation
-  }
+
+  const client = ExperimentalGetTinaClient();
+  const tinaProps = await client.page({
+    relativePath: `home.mdx`,
+  });
 
   return {
     props: {
-      data,
-      //myOtherProp: 'some-other-data',
+      data: tinaProps.data || null,
+      query: tinaProps.query || null,
+      variables: tinaProps.variables || null,
     },
   };
 };

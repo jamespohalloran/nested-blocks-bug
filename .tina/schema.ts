@@ -9,31 +9,55 @@ const schema = defineSchema({
       format: "mdx",
       fields: [
         {
-          name: "body",
-          label: "Main Content",
-          type: "rich-text",
-          isBody: true,
-        },
-      ],
-    },
-    {
-      label: "Blog Posts",
-      name: "post",
-      path: "content/post",
-      fields: [
-        {
-          type: "string",
-          label: "Title",
-          name: "title",
-        },
-        {
-          type: "string",
-          label: "Blog Post Body",
-          name: "body",
-          isBody: true,
-          ui: {
-            component: "textarea",
-          },
+          label: "3 layer nesting",
+          name: "pageBlocks3",
+          type: "object",
+          description:
+            "This also works. It's a blockList > groupList > groupList",
+          list: true,
+          templates: [
+            {
+              label: "Page Blocks",
+              name: "nestedBlocka",
+              fields: [
+                {
+                  label: "Page Blocks",
+                  name: "nestedBlockb",
+                  type: "object",
+                  list: true,
+                  templates: [
+                    {
+                      label: "List Items",
+                      name: "items",
+                      ui: {
+                        defaultItem: {
+                          title: "Here's Another Feature",
+                        },
+                      },
+                      fields: [
+                        {
+                          label: "Page Blocks",
+                          name: "nestedBlockc",
+                          type: "object",
+                          list: true,
+                          ui: {
+                            visualSelector: true,
+                          },
+                          fields: [
+                            {
+                              label: "title",
+                              name: "title",
+                              type: "string",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         },
       ],
     },
@@ -54,17 +78,7 @@ export const tinaConfig = defineConfig({
   cmsCallback: (cms) => {
     import("tinacms").then(({ RouteMappingPlugin }) => {
       const RouteMapping = new RouteMappingPlugin((collection, document) => {
-        if (["page"].includes(collection.name)) {
-          if (document._sys.filename === "home") {
-            return "/";
-          }
-        }
-
-        if (["post"].includes(collection.name)) {
-          return `/posts/${document._sys.filename}`;
-        }
-
-        return undefined;
+        return "/";
       });
 
       cms.plugins.add(RouteMapping);
