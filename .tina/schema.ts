@@ -1,4 +1,53 @@
-import { defineConfig, defineSchema } from "tinacms";
+import { defineConfig, defineSchema, TinaTemplate } from "tinacms";
+
+const InnerTemplate: TinaTemplate = {
+  label: "List Items",
+  name: "items",
+  ui: {
+    defaultItem: {
+      title: "Here's Another Feature",
+    },
+  },
+  fields: [
+    {
+      label: "Page Blocks",
+      name: "nestedBlockc",
+      type: "object",
+      list: true,
+      ui: {
+        visualSelector: true,
+      },
+      fields: [
+        {
+          label: "title",
+          name: "title",
+          type: "string",
+        },
+      ],
+    },
+  ],
+};
+
+const BlocksTemplate: TinaTemplate = {
+  label: "Page Blocks",
+  name: "nestedBlocka",
+  fields: [
+    {
+      label: "Page Blocks",
+      name: "nestedBlock1",
+      type: "object",
+      list: true,
+      templates: [InnerTemplate],
+    },
+    {
+      label: "Page Blocks2",
+      name: "nestedBlock2",
+      type: "object",
+      list: true,
+      templates: [InnerTemplate],
+    },
+  ],
+};
 
 const schema = defineSchema({
   collections: [
@@ -15,49 +64,7 @@ const schema = defineSchema({
           description:
             "This also works. It's a blockList > groupList > groupList",
           list: true,
-          templates: [
-            {
-              label: "Page Blocks",
-              name: "nestedBlocka",
-              fields: [
-                {
-                  label: "Page Blocks",
-                  name: "nestedBlockb",
-                  type: "object",
-                  list: true,
-                  templates: [
-                    {
-                      label: "List Items",
-                      name: "items",
-                      ui: {
-                        defaultItem: {
-                          title: "Here's Another Feature",
-                        },
-                      },
-                      fields: [
-                        {
-                          label: "Page Blocks",
-                          name: "nestedBlockc",
-                          type: "object",
-                          list: true,
-                          ui: {
-                            visualSelector: true,
-                          },
-                          fields: [
-                            {
-                              label: "title",
-                              name: "title",
-                              type: "string",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+          templates: [BlocksTemplate],
         },
       ],
     },

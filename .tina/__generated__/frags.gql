@@ -2,9 +2,18 @@ fragment PageParts on Page {
   pageBlocks3 {
     __typename
     ... on PagePageBlocks3NestedBlocka {
-      nestedBlockb {
+      nestedBlock1 {
         __typename
-        ... on PagePageBlocks3NestedBlockaNestedBlockbItems {
+        ... on PagePageBlocks3NestedBlockaNestedBlock1Items {
+          nestedBlockc {
+            __typename
+            title
+          }
+        }
+      }
+      nestedBlock2 {
+        __typename
+        ... on PagePageBlocks3NestedBlockaNestedBlock2Items {
           nestedBlockc {
             __typename
             title

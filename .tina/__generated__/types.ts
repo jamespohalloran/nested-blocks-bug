@@ -149,21 +149,34 @@ export type CollectionDocumentsArgs = {
 
 export type DocumentNode = Page;
 
-export type PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc = {
-  __typename?: 'PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc';
+export type PagePageBlocks3NestedBlockaNestedBlock1ItemsNestedBlockc = {
+  __typename?: 'PagePageBlocks3NestedBlockaNestedBlock1ItemsNestedBlockc';
   title?: Maybe<Scalars['String']>;
 };
 
-export type PagePageBlocks3NestedBlockaNestedBlockbItems = {
-  __typename?: 'PagePageBlocks3NestedBlockaNestedBlockbItems';
-  nestedBlockc?: Maybe<Array<Maybe<PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc>>>;
+export type PagePageBlocks3NestedBlockaNestedBlock1Items = {
+  __typename?: 'PagePageBlocks3NestedBlockaNestedBlock1Items';
+  nestedBlockc?: Maybe<Array<Maybe<PagePageBlocks3NestedBlockaNestedBlock1ItemsNestedBlockc>>>;
 };
 
-export type PagePageBlocks3NestedBlockaNestedBlockb = PagePageBlocks3NestedBlockaNestedBlockbItems;
+export type PagePageBlocks3NestedBlockaNestedBlock1 = PagePageBlocks3NestedBlockaNestedBlock1Items;
+
+export type PagePageBlocks3NestedBlockaNestedBlock2ItemsNestedBlockc = {
+  __typename?: 'PagePageBlocks3NestedBlockaNestedBlock2ItemsNestedBlockc';
+  title?: Maybe<Scalars['String']>;
+};
+
+export type PagePageBlocks3NestedBlockaNestedBlock2Items = {
+  __typename?: 'PagePageBlocks3NestedBlockaNestedBlock2Items';
+  nestedBlockc?: Maybe<Array<Maybe<PagePageBlocks3NestedBlockaNestedBlock2ItemsNestedBlockc>>>;
+};
+
+export type PagePageBlocks3NestedBlockaNestedBlock2 = PagePageBlocks3NestedBlockaNestedBlock2Items;
 
 export type PagePageBlocks3NestedBlocka = {
   __typename?: 'PagePageBlocks3NestedBlocka';
-  nestedBlockb?: Maybe<Array<Maybe<PagePageBlocks3NestedBlockaNestedBlockb>>>;
+  nestedBlock1?: Maybe<Array<Maybe<PagePageBlocks3NestedBlockaNestedBlock1>>>;
+  nestedBlock2?: Maybe<Array<Maybe<PagePageBlocks3NestedBlockaNestedBlock2>>>;
 };
 
 export type PagePageBlocks3 = PagePageBlocks3NestedBlocka;
@@ -242,20 +255,33 @@ export type DocumentMutation = {
   page?: InputMaybe<PageMutation>;
 };
 
-export type PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockcMutation = {
+export type PagePageBlocks3NestedBlockaNestedBlock1ItemsNestedBlockcMutation = {
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type PagePageBlocks3NestedBlockaNestedBlockbItemsMutation = {
-  nestedBlockc?: InputMaybe<Array<InputMaybe<PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockcMutation>>>;
+export type PagePageBlocks3NestedBlockaNestedBlock1ItemsMutation = {
+  nestedBlockc?: InputMaybe<Array<InputMaybe<PagePageBlocks3NestedBlockaNestedBlock1ItemsNestedBlockcMutation>>>;
 };
 
-export type PagePageBlocks3NestedBlockaNestedBlockbMutation = {
-  items?: InputMaybe<PagePageBlocks3NestedBlockaNestedBlockbItemsMutation>;
+export type PagePageBlocks3NestedBlockaNestedBlock1Mutation = {
+  items?: InputMaybe<PagePageBlocks3NestedBlockaNestedBlock1ItemsMutation>;
+};
+
+export type PagePageBlocks3NestedBlockaNestedBlock2ItemsNestedBlockcMutation = {
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type PagePageBlocks3NestedBlockaNestedBlock2ItemsMutation = {
+  nestedBlockc?: InputMaybe<Array<InputMaybe<PagePageBlocks3NestedBlockaNestedBlock2ItemsNestedBlockcMutation>>>;
+};
+
+export type PagePageBlocks3NestedBlockaNestedBlock2Mutation = {
+  items?: InputMaybe<PagePageBlocks3NestedBlockaNestedBlock2ItemsMutation>;
 };
 
 export type PagePageBlocks3NestedBlockaMutation = {
-  nestedBlockb?: InputMaybe<Array<InputMaybe<PagePageBlocks3NestedBlockaNestedBlockbMutation>>>;
+  nestedBlock1?: InputMaybe<Array<InputMaybe<PagePageBlocks3NestedBlockaNestedBlock1Mutation>>>;
+  nestedBlock2?: InputMaybe<Array<InputMaybe<PagePageBlocks3NestedBlockaNestedBlock2Mutation>>>;
 };
 
 export type PagePageBlocks3Mutation = {
@@ -266,14 +292,14 @@ export type PageMutation = {
   pageBlocks3?: InputMaybe<Array<InputMaybe<PagePageBlocks3Mutation>>>;
 };
 
-export type PagePartsFragment = { __typename?: 'Page', pageBlocks3?: Array<{ __typename: 'PagePageBlocks3NestedBlocka', nestedBlockb?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlockbItems', nestedBlockc?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc', title?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined };
+export type PagePartsFragment = { __typename?: 'Page', pageBlocks3?: Array<{ __typename: 'PagePageBlocks3NestedBlocka', nestedBlock1?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlock1Items', nestedBlockc?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlock1ItemsNestedBlockc', title?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, nestedBlock2?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlock2Items', nestedBlockc?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlock2ItemsNestedBlockc', title?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined };
 
 export type PageQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
 
 
-export type PageQuery = { __typename?: 'Query', page: { __typename?: 'Page', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, pageBlocks3?: Array<{ __typename: 'PagePageBlocks3NestedBlocka', nestedBlockb?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlockbItems', nestedBlockc?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc', title?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } };
+export type PageQuery = { __typename?: 'Query', page: { __typename?: 'Page', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, pageBlocks3?: Array<{ __typename: 'PagePageBlocks3NestedBlocka', nestedBlock1?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlock1Items', nestedBlockc?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlock1ItemsNestedBlockc', title?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, nestedBlock2?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlock2Items', nestedBlockc?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlock2ItemsNestedBlockc', title?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } };
 
 export type PageConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']>;
@@ -284,16 +310,25 @@ export type PageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PageConnectionQuery = { __typename?: 'Query', pageConnection: { __typename?: 'PageConnection', totalCount: number, edges?: Array<{ __typename?: 'PageConnectionEdges', node?: { __typename?: 'Page', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, pageBlocks3?: Array<{ __typename: 'PagePageBlocks3NestedBlocka', nestedBlockb?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlockbItems', nestedBlockc?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc', title?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } | null | undefined } | null | undefined> | null | undefined } };
+export type PageConnectionQuery = { __typename?: 'Query', pageConnection: { __typename?: 'PageConnection', totalCount: number, edges?: Array<{ __typename?: 'PageConnectionEdges', node?: { __typename?: 'Page', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, pageBlocks3?: Array<{ __typename: 'PagePageBlocks3NestedBlocka', nestedBlock1?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlock1Items', nestedBlockc?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlock1ItemsNestedBlockc', title?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, nestedBlock2?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlock2Items', nestedBlockc?: Array<{ __typename: 'PagePageBlocks3NestedBlockaNestedBlock2ItemsNestedBlockc', title?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } | null | undefined } | null | undefined> | null | undefined } };
 
 export const PagePartsFragmentDoc = gql`
     fragment PageParts on Page {
   pageBlocks3 {
     __typename
     ... on PagePageBlocks3NestedBlocka {
-      nestedBlockb {
+      nestedBlock1 {
         __typename
-        ... on PagePageBlocks3NestedBlockaNestedBlockbItems {
+        ... on PagePageBlocks3NestedBlockaNestedBlock1Items {
+          nestedBlockc {
+            __typename
+            title
+          }
+        }
+      }
+      nestedBlock2 {
+        __typename
+        ... on PagePageBlocks3NestedBlockaNestedBlock2Items {
           nestedBlockc {
             __typename
             title

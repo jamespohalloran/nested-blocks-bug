@@ -77,18 +77,29 @@ type Collection {
 
 union DocumentNode = Page
 
-type PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc {
+type PagePageBlocks3NestedBlockaNestedBlock1ItemsNestedBlockc {
   title: String
 }
 
-type PagePageBlocks3NestedBlockaNestedBlockbItems {
-  nestedBlockc: [PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockc]
+type PagePageBlocks3NestedBlockaNestedBlock1Items {
+  nestedBlockc: [PagePageBlocks3NestedBlockaNestedBlock1ItemsNestedBlockc]
 }
 
-union PagePageBlocks3NestedBlockaNestedBlockb = PagePageBlocks3NestedBlockaNestedBlockbItems
+union PagePageBlocks3NestedBlockaNestedBlock1 = PagePageBlocks3NestedBlockaNestedBlock1Items
+
+type PagePageBlocks3NestedBlockaNestedBlock2ItemsNestedBlockc {
+  title: String
+}
+
+type PagePageBlocks3NestedBlockaNestedBlock2Items {
+  nestedBlockc: [PagePageBlocks3NestedBlockaNestedBlock2ItemsNestedBlockc]
+}
+
+union PagePageBlocks3NestedBlockaNestedBlock2 = PagePageBlocks3NestedBlockaNestedBlock2Items
 
 type PagePageBlocks3NestedBlocka {
-  nestedBlockb: [PagePageBlocks3NestedBlockaNestedBlockb]
+  nestedBlock1: [PagePageBlocks3NestedBlockaNestedBlock1]
+  nestedBlock2: [PagePageBlocks3NestedBlockaNestedBlock2]
 }
 
 union PagePageBlocks3 = PagePageBlocks3NestedBlocka
@@ -124,20 +135,33 @@ input DocumentMutation {
   page: PageMutation
 }
 
-input PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockcMutation {
+input PagePageBlocks3NestedBlockaNestedBlock1ItemsNestedBlockcMutation {
   title: String
 }
 
-input PagePageBlocks3NestedBlockaNestedBlockbItemsMutation {
-  nestedBlockc: [PagePageBlocks3NestedBlockaNestedBlockbItemsNestedBlockcMutation]
+input PagePageBlocks3NestedBlockaNestedBlock1ItemsMutation {
+  nestedBlockc: [PagePageBlocks3NestedBlockaNestedBlock1ItemsNestedBlockcMutation]
 }
 
-input PagePageBlocks3NestedBlockaNestedBlockbMutation {
-  items: PagePageBlocks3NestedBlockaNestedBlockbItemsMutation
+input PagePageBlocks3NestedBlockaNestedBlock1Mutation {
+  items: PagePageBlocks3NestedBlockaNestedBlock1ItemsMutation
+}
+
+input PagePageBlocks3NestedBlockaNestedBlock2ItemsNestedBlockcMutation {
+  title: String
+}
+
+input PagePageBlocks3NestedBlockaNestedBlock2ItemsMutation {
+  nestedBlockc: [PagePageBlocks3NestedBlockaNestedBlock2ItemsNestedBlockcMutation]
+}
+
+input PagePageBlocks3NestedBlockaNestedBlock2Mutation {
+  items: PagePageBlocks3NestedBlockaNestedBlock2ItemsMutation
 }
 
 input PagePageBlocks3NestedBlockaMutation {
-  nestedBlockb: [PagePageBlocks3NestedBlockaNestedBlockbMutation]
+  nestedBlock1: [PagePageBlocks3NestedBlockaNestedBlock1Mutation]
+  nestedBlock2: [PagePageBlocks3NestedBlockaNestedBlock2Mutation]
 }
 
 input PagePageBlocks3Mutation {
